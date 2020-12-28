@@ -1,0 +1,5 @@
+com\atguigu\springcloud\entities\Payment.class
+com\atguigu\springcloud\entities\CommonResult.class
+com\atguigu\springcloud\entities\Invitation.class
+com\atguigu\springcloud\entities\Comment.class
+com\atguigu\springcloud\entities\User.class

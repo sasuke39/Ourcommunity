@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.spingcloud.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.atguigu.spingcloud.pojo.User" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_username" property="userUsername" jdbcType="VARCHAR" />
+    <result column="user_phoneNumber" property="userPhonenumber" jdbcType="VARCHAR" />
+    <result column="user_followingNumber" property="userFollowingnumber" jdbcType="INTEGER" />
+    <result column="user_followersNumber" property="userFollowersnumber" jdbcType="INTEGER" />
+    <result column="user_extends1" property="userExtends1" jdbcType="VARCHAR" />
+    <result column="user_extends2" property="userExtends2" jdbcType="VARCHAR" />
+    <result column="user_extends3" property="userExtends3" jdbcType="VARCHAR" />
+    <result column="user_extends4" property="userExtends4" jdbcType="VARCHAR" />
+    <result column="user_extends5" property="userExtends5" jdbcType="VARCHAR" />
+    <result column="user_extends6" property="userExtends6" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_username, user_phoneNumber, user_followingNumber, user_followersNumber, 
+    user_extends1, user_extends2, user_extends3, user_extends4, user_extends5, user_extends6
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.atguigu.spingcloud.pojo.User" >
+    insert into user (user_id, user_username, user_phoneNumber, 
+      user_followingNumber, user_followersNumber, 
+      user_extends1, user_extends2, user_extends3, 
+      user_extends4, user_extends5, user_extends6
+      )
+    values (#{userId,jdbcType=BIGINT}, #{userUsername,jdbcType=VARCHAR}, #{userPhonenumber,jdbcType=VARCHAR}, 
+      #{userFollowingnumber,jdbcType=INTEGER}, #{userFollowersnumber,jdbcType=INTEGER}, 
+      #{userExtends1,jdbcType=VARCHAR}, #{userExtends2,jdbcType=VARCHAR}, #{userExtends3,jdbcType=VARCHAR}, 
+      #{userExtends4,jdbcType=VARCHAR}, #{userExtends5,jdbcType=VARCHAR}, #{userExtends6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.atguigu.spingcloud.pojo.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userUsername != null" >
+        user_username,
+      </if>
+      <if test="userPhonenumber != null" >
+        user_phoneNumber,
+      </if>
+      <if test="userFollowingnumber != null" >
+        user_followingNumber,
+      </if>
+      <if test="userFollowersnumber != null" >
+        user_followersNumber,
+      </if>
+      <if test="userExtends1 != null" >
+        user_extends1,
+      </if>
+      <if test="userExtends2 != null" >
+        user_extends2,
+      </if>
+      <if test="userExtends3 != null" >
+        user_extends3,
+      </if>
+      <if test="userExtends4 != null" >
+        user_extends4,
+      </if>
+      <if test="userExtends5 != null" >
+        user_extends5,
+      </if>
+      <if test="userExtends6 != null" >
+        user_extends6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userUsername != null" >
+        #{userUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhonenumber != null" >
+        #{userPhonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userFollowingnumber != null" >
+        #{userFollowingnumber,jdbcType=INTEGER},
+      </if>
+      <if test="userFollowersnumber != null" >
+        #{userFollowersnumber,jdbcType=INTEGER},
+      </if>
+      <if test="userExtends1 != null" >
+        #{userExtends1,jdbcType=VARCHAR},
+      </if>
+      <if test="userExtends2 != null" >
+        #{userExtends2,jdbcType=VARCHAR},
+      </if>
+      <if test="userExtends3 != null" >
+        #{userExtends3,jdbcType=VARCHAR},
+      </if>
+      <if test="userExtends4 != null" >
+        #{userExtends4,jdbcType=VARCHAR},
+      </if>
+      <if test="userExtends5 != null" >
+        #{userExtends5,jdbcType=VARCHAR},
+      </if>
+      <if test="userExtends6 != null" >
+        #{userExtends6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.spingcloud.pojo.User" >
+    update user
+    <set >
+      <if test="userUsername != null" >
+        user_username = #{userUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhonenumber != null" >
+        user_phoneNumber = #{userPhonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userFollowingnumber != null" >
+        user_followingNumber = #{userFollowingnumber,jdbcType=INTEGER},
+      </if>
+      <if test="userFollowersnumber != null" >
+        user_followersNumber = #{userFollowersnumber,jdbcType=INTEGER},
+      </if>
+      <if test="userExtends1 != null" >
+        user_extends1 = #{userExtends1,jdbcType=VARCHAR},
+      </if>
+      <if test="userExtends2 != null" >
+        user_extends2 = #{userExtends2,jdbcType=VARCHAR},
+      </if>
+      <if test="userExtends3 != null" >
+        user_extends3 = #{userExtends3,jdbcType=VARCHAR},
+      </if>
+      <if test="userExtends4 != null" >
+        user_extends4 = #{userExtends4,jdbcType=VARCHAR},
+      </if>
+      <if test="userExtends5 != null" >
+        user_extends5 = #{userExtends5,jdbcType=VARCHAR},
+      </if>
+      <if test="userExtends6 != null" >
+        user_extends6 = #{userExtends6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atguigu.spingcloud.pojo.User" >
+    update user
+    set user_username = #{userUsername,jdbcType=VARCHAR},
+      user_phoneNumber = #{userPhonenumber,jdbcType=VARCHAR},
+      user_followingNumber = #{userFollowingnumber,jdbcType=INTEGER},
+      user_followersNumber = #{userFollowersnumber,jdbcType=INTEGER},
+      user_extends1 = #{userExtends1,jdbcType=VARCHAR},
+      user_extends2 = #{userExtends2,jdbcType=VARCHAR},
+      user_extends3 = #{userExtends3,jdbcType=VARCHAR},
+      user_extends4 = #{userExtends4,jdbcType=VARCHAR},
+      user_extends5 = #{userExtends5,jdbcType=VARCHAR},
+      user_extends6 = #{userExtends6,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+</mapper>
