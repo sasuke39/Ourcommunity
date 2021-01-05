@@ -8,4 +8,5 @@ public interface UserService {
     int create(User payment);
     User getUserById(@Param("id") Long id);
     int deleteById(@Param("id") Long id);
+    int update (@Param("user") User user);
 }

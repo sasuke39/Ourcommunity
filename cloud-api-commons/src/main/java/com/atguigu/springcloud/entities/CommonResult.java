@@ -1,5 +1,6 @@
 package com.atguigu.springcloud.entities;
 
+import com.atguigu.springcloud.resultCode.ResultData;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,20 +8,21 @@ import lombok.NoArgsConstructor;
 //@AllArgsConstructor //有参构造器
 @NoArgsConstructor  //无参构造器
 public class CommonResult<T> {
-    private Integer code;
+    private ResultData code;
     private String message;
     private T data;
+    private String serverPort;
 
-    public CommonResult(Integer code,String message,T data){
-        this.code=code;
-        this.message=message;
+    public CommonResult(ResultData code,String message,String serverPort,T data){
+        this(code, message, serverPort);
         this.data=data;
     }
 
-    public CommonResult(Integer code,String message){
+    public CommonResult(ResultData code,String message,String serverPort){
         this.code=code;
         this.message=message;
-
+        this.serverPort=serverPort;
     }
+
 
 }
