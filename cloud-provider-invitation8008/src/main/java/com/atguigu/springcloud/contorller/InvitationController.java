@@ -1,8 +1,7 @@
-package springcloud.contorller;
+package com.atguigu.springcloud.contorller;
 
-import com.atguigu.springcloud.Service.CommentService;
+import com.atguigu.springcloud.Service.InvitationService;
 import com.atguigu.springcloud.entities.CommonResult;
-import com.atguigu.springcloud.pojo.Comment;
 import com.atguigu.springcloud.resultCode.ResultData;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.Validate;
@@ -16,13 +15,13 @@ import javax.annotation.Resource;
 
 @RestController
 @Slf4j  //日志
-public class CommentController {
-    private static final Logger logger = LoggerFactory.getLogger(CommentController.class);
+public class InvitationController {
+    private static final Logger logger = LoggerFactory.getLogger(InvitationController.class);
 
     @Value("${server.port}")
     private String serverPort;
     @Resource
-    private CommentService commentService;
+    private InvitationService invitationService;
 
     @Resource
     private DiscoveryClient discoveryClient;
@@ -30,7 +29,7 @@ public class CommentController {
     @PostMapping("/comment/create")
     public CommonResult create(@RequestBody Comment comment){//RequestBody注解可以将请求体中对对应的JSON字符串绑定到相应的Bean上
         Validate.notNull(comment,"user不能为空");
-        int result = commentService.createComment(comment);
+        int result = invitationService.createComment(comment);
         logger.info("******插入的数据为：" + comment);
         logger.info("******插入结果：" + result);
 
@@ -44,7 +43,7 @@ public class CommentController {
     @GetMapping("/comment/get/{id}")
     public CommonResult getUserById(@PathVariable("id") Integer id){
         Validate.isTrue(id==null||id <= 0,"id不合规范");
-        Comment comment = commentService.getCommentById(id);
+        Comment comment = invitationService.getCommentById(id);
         logger.info("******查询结果：" + comment);
 
         if(comment != null){
@@ -57,7 +56,7 @@ public class CommentController {
     @PostMapping("/comment/update")
     public CommonResult updateUser(@RequestBody Comment comment){
         Validate.notNull(comment,"user不能为空");
-        int update = commentService.updateComment(comment);
+        int update = invitationService.updateComment(comment);
         CommonResult result = new CommonResult<>();
         if (update<=0){
             result.setCode(ResultData.FAILED);
@@ -70,7 +69,7 @@ public class CommentController {
     @PostMapping("/comment/delete/{id}")
     public CommonResult deleteUser(@PathVariable("id") Integer id){
         Validate.notNull(id,"id不能为空");
-        int delete = commentService.deleteCommentById(id);
+        int delete = invitationService.deleteCommentById(id);
         if (delete<=0){
             return new CommonResult(ResultData.FAILED,"删除对应评论失败",serverPort);
         }else {

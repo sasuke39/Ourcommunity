@@ -1,7 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.atguigu.springcloud.dao.CommentMapper">
-  <resultMap id="BaseResultMap" type="com.atguigu.springcloud.pojo.Comment">
+<mapper namespace="com.atguigu.springcloud.dao.InvitationMapper">
+  <resultMap id="BaseResultMap" type="com.atguigu.springcloud.pojo.Invitation">
+    <id column="inv_id" jdbcType="INTEGER" property="invId" />
+    <result column="inv_title" jdbcType="VARCHAR" property="invTitle" />
+    <result column="inv_userId" jdbcType="INTEGER" property="invUserid" />
+    <result column="inv_content" jdbcType="VARCHAR" property="invContent" />
+    <result column="inv_commentsNubmer" jdbcType="INTEGER" property="invCommentsnubmer" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    inv_id, inv_title, inv_userId, inv_content, inv_commentsNubmer
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userinvitation
+    where inv_id = #{invId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userinvitation
+    where inv_id = #{invId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.atguigu.springcloud.pojo.Invitation">
+    insert into userinvitation (inv_id, inv_title, inv_userId, 
+      inv_content, inv_commentsNubmer)
+    values (#{invId,jdbcType=INTEGER}, #{invTitle,jdbcType=VARCHAR}, #{invUserid,jdbcType=INTEGER}, 
+      #{invContent,jdbcType=VARCHAR}, #{invCommentsnubmer,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.atguigu.springcloud.pojo.Invitation">
+    insert into userinvitation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="invId != null">
+        inv_id,
+      </if>
+      <if test="invTitle != null">
+        inv_title,
+      </if>
+      <if test="invUserid != null">
+        inv_userId,
+      </if>
+      <if test="invContent != null">
+        inv_content,
+      </if>
+      <if test="invCommentsnubmer != null">
+        inv_commentsNubmer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="invId != null">
+        #{invId,jdbcType=INTEGER},
+      </if>
+      <if test="invTitle != null">
+        #{invTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="invUserid != null">
+        #{invUserid,jdbcType=INTEGER},
+      </if>
+      <if test="invContent != null">
+        #{invContent,jdbcType=VARCHAR},
+      </if>
+      <if test="invCommentsnubmer != null">
+        #{invCommentsnubmer,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.springcloud.pojo.Invitation">
+    update userinvitation
+    <set>
+      <if test="invTitle != null">
+        inv_title = #{invTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="invUserid != null">
+        inv_userId = #{invUserid,jdbcType=INTEGER},
+      </if>
+      <if test="invContent != null">
+        inv_content = #{invContent,jdbcType=VARCHAR},
+      </if>
+      <if test="invCommentsnubmer != null">
+        inv_commentsNubmer = #{invCommentsnubmer,jdbcType=INTEGER},
+      </if>
+    </set>
+    where inv_id = #{invId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atguigu.springcloud.pojo.Invitation">
+    update userinvitation
+    set inv_title = #{invTitle,jdbcType=VARCHAR},
+      inv_userId = #{invUserid,jdbcType=INTEGER},
+      inv_content = #{invContent,jdbcType=VARCHAR},
+      inv_commentsNubmer = #{invCommentsnubmer,jdbcType=INTEGER}
+    where inv_id = #{invId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.atguigu.com.atguigu.springcloud.pojo.Comment">
     <id column="com_id" jdbcType="INTEGER" property="comId" />
     <result column="com_userId" jdbcType="INTEGER" property="comUserid" />
     <result column="com_invitationId" jdbcType="INTEGER" property="comInvitationid" />
@@ -27,7 +116,7 @@
     delete from usercomment
     where com_id = #{comId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <insert id="insert" parameterType="com.atguigu.com.atguigu.springcloud.pojo.Comment">
     insert into usercomment (com_id, com_userId, com_invitationId, 
       com_likesNumber, com_content, com_extends1, 
       com_extends2, com_extends3, com_extends4, 
@@ -37,7 +126,7 @@
       #{comExtends2,jdbcType=VARCHAR}, #{comExtends3,jdbcType=VARCHAR}, #{comExtends4,jdbcType=VARCHAR}, 
       #{comFloodsnumber,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <insert id="insertSelective" parameterType="com.atguigu.com.atguigu.springcloud.pojo.Comment">
     insert into usercomment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="comId != null">
@@ -104,7 +193,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.com.atguigu.springcloud.pojo.Comment">
     update usercomment
     <set>
       <if test="comUserid != null">
@@ -137,7 +226,7 @@
     </set>
     where com_id = #{comId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <update id="updateByPrimaryKey" parameterType="com.atguigu.com.atguigu.springcloud.pojo.Comment">
     update usercomment
     set com_userId = #{comUserid,jdbcType=INTEGER},
       com_invitationId = #{comInvitationid,jdbcType=INTEGER},
@@ -150,7 +239,7 @@
       com_floodsNumber = #{comFloodsnumber,jdbcType=INTEGER}
     where com_id = #{comId,jdbcType=INTEGER}
   </update>
-  <resultMap id="BaseResultMap" type="com.atguigu.springcloud.pojo.Comment">
+  <resultMap id="BaseResultMap" type="com.atguigu.com.atguigu.springcloud.pojo.Comment">
     <id column="com_id" jdbcType="INTEGER" property="comId" />
     <result column="com_userId" jdbcType="INTEGER" property="comUserid" />
     <result column="com_invitationId" jdbcType="INTEGER" property="comInvitationid" />
@@ -176,7 +265,7 @@
     delete from usercomment
     where com_id = #{comId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <insert id="insert" parameterType="com.atguigu.com.atguigu.springcloud.pojo.Comment">
     insert into usercomment (com_id, com_userId, com_invitationId, 
       com_likesNumber, com_content, com_extends1, 
       com_extends2, com_extends3, com_extends4, 
@@ -186,7 +275,7 @@
       #{comExtends2,jdbcType=VARCHAR}, #{comExtends3,jdbcType=VARCHAR}, #{comExtends4,jdbcType=VARCHAR}, 
       #{comFloodsnumber,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <insert id="insertSelective" parameterType="com.atguigu.com.atguigu.springcloud.pojo.Comment">
     insert into usercomment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="comId != null">
@@ -253,7 +342,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.com.atguigu.springcloud.pojo.Comment">
     update usercomment
     <set>
       <if test="comUserid != null">
@@ -286,7 +375,7 @@
     </set>
     where com_id = #{comId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <update id="updateByPrimaryKey" parameterType="com.atguigu.com.atguigu.springcloud.pojo.Comment">
     update usercomment
     set com_userId = #{comUserid,jdbcType=INTEGER},
       com_invitationId = #{comInvitationid,jdbcType=INTEGER},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.atguigu.springcloud.dao.CommentMapper">
-  <resultMap id="BaseResultMap" type="com.atguigu.springcloud.pojo.Comment">
+<mapper namespace="com.atguigu.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.atguigu.Comment">
     <id column="com_id" jdbcType="INTEGER" property="comId" />
     <result column="com_userId" jdbcType="INTEGER" property="comUserid" />
     <result column="com_invitationId" jdbcType="INTEGER" property="comInvitationid" />
@@ -27,7 +27,7 @@
     delete from usercomment
     where com_id = #{comId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <insert id="insert" parameterType="com.atguigu.Comment">
     insert into usercomment (com_id, com_userId, com_invitationId, 
       com_likesNumber, com_content, com_extends1, 
       com_extends2, com_extends3, com_extends4, 
@@ -37,7 +37,7 @@
       #{comExtends2,jdbcType=VARCHAR}, #{comExtends3,jdbcType=VARCHAR}, #{comExtends4,jdbcType=VARCHAR}, 
       #{comFloodsnumber,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <insert id="insertSelective" parameterType="com.atguigu.Comment">
     insert into usercomment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="comId != null">
@@ -104,7 +104,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.Comment">
     update usercomment
     <set>
       <if test="comUserid != null">
@@ -137,7 +137,7 @@
     </set>
     where com_id = #{comId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <update id="updateByPrimaryKey" parameterType="com.atguigu.Comment">
     update usercomment
     set com_userId = #{comUserid,jdbcType=INTEGER},
       com_invitationId = #{comInvitationid,jdbcType=INTEGER},
@@ -150,7 +150,7 @@
       com_floodsNumber = #{comFloodsnumber,jdbcType=INTEGER}
     where com_id = #{comId,jdbcType=INTEGER}
   </update>
-  <resultMap id="BaseResultMap" type="com.atguigu.springcloud.pojo.Comment">
+  <resultMap id="BaseResultMap" type="com.atguigu.Comment">
     <id column="com_id" jdbcType="INTEGER" property="comId" />
     <result column="com_userId" jdbcType="INTEGER" property="comUserid" />
     <result column="com_invitationId" jdbcType="INTEGER" property="comInvitationid" />
@@ -176,7 +176,7 @@
     delete from usercomment
     where com_id = #{comId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <insert id="insert" parameterType="com.atguigu.Comment">
     insert into usercomment (com_id, com_userId, com_invitationId, 
       com_likesNumber, com_content, com_extends1, 
       com_extends2, com_extends3, com_extends4, 
@@ -186,7 +186,7 @@
       #{comExtends2,jdbcType=VARCHAR}, #{comExtends3,jdbcType=VARCHAR}, #{comExtends4,jdbcType=VARCHAR}, 
       #{comFloodsnumber,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <insert id="insertSelective" parameterType="com.atguigu.Comment">
     insert into usercomment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="comId != null">
@@ -253,7 +253,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.Comment">
     update usercomment
     <set>
       <if test="comUserid != null">
@@ -286,7 +286,7 @@
     </set>
     where com_id = #{comId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.atguigu.springcloud.pojo.Comment">
+  <update id="updateByPrimaryKey" parameterType="com.atguigu.Comment">
     update usercomment
     set com_userId = #{comUserid,jdbcType=INTEGER},
       com_invitationId = #{comInvitationid,jdbcType=INTEGER},
