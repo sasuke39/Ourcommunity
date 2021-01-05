@@ -20,6 +20,7 @@
         <module>cloud-consumer-consul-order80</module>
         <module>cloud-provider-user8004</module>
         <module>cloud-provider-comment8006</module>
+        <module>cloud-provider-invitation8008</module>
     </modules>
 
     <!--统一管理jar包版本-->

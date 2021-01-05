@@ -1,4 +1,4 @@
-package com.atguigu.springcloud.Service;
+package springcloud.Service;
 
 import com.atguigu.springcloud.dao.CommentMapper;
 import com.atguigu.springcloud.pojo.Comment;

@@ -1,8 +1,8 @@
-package com.atguigu.springcloud.contorller;
+package springcloud.contorller;
 
 import com.atguigu.springcloud.Service.CommentService;
-import com.atguigu.springcloud.pojo.Comment;
 import com.atguigu.springcloud.entities.CommonResult;
+import com.atguigu.springcloud.pojo.Comment;
 import com.atguigu.springcloud.resultCode.ResultData;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.Validate;

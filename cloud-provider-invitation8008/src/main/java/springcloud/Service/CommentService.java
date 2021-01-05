@@ -1,4 +1,4 @@
-package com.atguigu.springcloud.Service;
+package springcloud.Service;
 
 import com.atguigu.springcloud.pojo.Comment;
 import org.apache.ibatis.annotations.Param;
