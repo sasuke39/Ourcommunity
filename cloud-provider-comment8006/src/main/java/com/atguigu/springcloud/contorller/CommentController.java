@@ -1,7 +1,7 @@
-package com.atguigu.spingcloud.Controller;
+package com.atguigu.springcloud.contorller;
 
-import com.atguigu.spingcloud.Service.UserService;
-import com.atguigu.spingcloud.pojo.User;
+import com.atguigu.springcloud.Service.CommentService;
+import com.atguigu.springcloud.pojo.Comment;
 import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.resultCode.ResultData;
 import lombok.extern.slf4j.Slf4j;
@@ -16,22 +16,22 @@ import javax.annotation.Resource;
 
 @RestController
 @Slf4j  //日志
-public class UserController {
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+public class CommentController {
+    private static final Logger logger = LoggerFactory.getLogger(CommentController.class);
 
     @Value("${server.port}")
     private String serverPort;
     @Resource
-    private UserService userService;
+    private CommentService commentService;
 
     @Resource
     private DiscoveryClient discoveryClient;
     //前后端分离，所以不能直接返回对象，数据要先经过CommonResult封装再返回
     @PostMapping("/payment/create")
-    public CommonResult create(@RequestBody User user){//RequestBody注解可以将请求体中对对应的JSON字符串绑定到相应的Bean上
-        Validate.notNull(user,"user不能为空");
-        int result = userService.create(user);
-        logger.info("******插入的数据为：" + user);
+    public CommonResult create(@RequestBody Comment comment){//RequestBody注解可以将请求体中对对应的JSON字符串绑定到相应的Bean上
+        Validate.notNull(comment,"user不能为空");
+        int result = commentService.create(comment);
+        logger.info("******插入的数据为：" + comment);
         logger.info("******插入结果：" + result);
 
         if(result > 0){
@@ -44,7 +44,7 @@ public class UserController {
     @GetMapping("/user/get/{id}")
     public CommonResult getUserById(@PathVariable("id") Long id){
         Validate.isTrue(id==null||id <= 0,"id不合规范");
-        User user = userService.getUserById(id);
+        Comment comment = commentService.getUserById(id);
         logger.info("******查询结果：" + user);
 
         if(user != null){

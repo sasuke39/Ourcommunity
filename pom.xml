@@ -19,6 +19,7 @@
         <module>cloud-provider-consul-payment8006</module>
         <module>cloud-consumer-consul-order80</module>
         <module>cloud-provider-user8004</module>
+        <module>cloud-provider-comment8006</module>
     </modules>
 
     <!--统一管理jar包版本-->
