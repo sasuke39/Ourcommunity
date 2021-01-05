@@ -2,6 +2,7 @@ package com.atguigu.springcloud.contorller;
 
 import com.atguigu.springcloud.Service.InvitationService;
 import com.atguigu.springcloud.entities.CommonResult;
+import com.atguigu.springcloud.pojo.Invitation;
 import com.atguigu.springcloud.resultCode.ResultData;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.Validate;
@@ -26,11 +27,11 @@ public class InvitationController {
     @Resource
     private DiscoveryClient discoveryClient;
     //前后端分离，所以不能直接返回对象，数据要先经过CommonResult封装再返回
-    @PostMapping("/comment/create")
-    public CommonResult create(@RequestBody Comment comment){//RequestBody注解可以将请求体中对对应的JSON字符串绑定到相应的Bean上
-        Validate.notNull(comment,"user不能为空");
-        int result = invitationService.createComment(comment);
-        logger.info("******插入的数据为：" + comment);
+    @PostMapping("/invitation/create")
+    public CommonResult create(@RequestBody Invitation invitation){//RequestBody注解可以将请求体中对对应的JSON字符串绑定到相应的Bean上
+        Validate.notNull(invitation,"user不能为空");
+        int result = invitationService.createInvitation(invitation);
+        logger.info("******插入的数据为：" + invitation);
         logger.info("******插入结果：" + result);
 
         if(result > 0){
@@ -40,23 +41,23 @@ public class InvitationController {
             return new CommonResult(ResultData.FAILED, "插入数据库失败",serverPort);
         }
     }
-    @GetMapping("/comment/get/{id}")
-    public CommonResult getUserById(@PathVariable("id") Integer id){
+    @GetMapping("/invitation/get/{id}")
+    public CommonResult getInvitationById(@PathVariable("id") Integer id){
         Validate.isTrue(id==null||id <= 0,"id不合规范");
-        Comment comment = invitationService.getCommentById(id);
-        logger.info("******查询结果：" + comment);
+        Invitation invitation = invitationService.getInvitationById(id);
+        logger.info("******查询结果：" + invitation);
 
-        if(comment != null){
+        if(invitation != null){
             //查询成功
-            return new CommonResult(ResultData.SUCCESS, "查询成功,serverPort:",serverPort, comment);
+            return new CommonResult(ResultData.SUCCESS, "查询成功,serverPort:",serverPort, invitation);
         }else{
             return new CommonResult(ResultData.NOTFOUND, "没有对应记录，查询ID："+id,serverPort);
         }
     }
-    @PostMapping("/comment/update")
-    public CommonResult updateUser(@RequestBody Comment comment){
-        Validate.notNull(comment,"user不能为空");
-        int update = invitationService.updateComment(comment);
+    @PostMapping("/invitation/update")
+    public CommonResult updateInvitation(@RequestBody Invitation invitation){
+        Validate.notNull(invitation,"user不能为空");
+        int update = invitationService.updateInvitation(invitation);
         CommonResult result = new CommonResult<>();
         if (update<=0){
             result.setCode(ResultData.FAILED);
@@ -66,10 +67,10 @@ public class InvitationController {
         }
         return  result;
     }
-    @PostMapping("/comment/delete/{id}")
-    public CommonResult deleteUser(@PathVariable("id") Integer id){
+    @PostMapping("/invitation/delete/{id}")
+    public CommonResult deleteInvitation(@PathVariable("id") Integer id){
         Validate.notNull(id,"id不能为空");
-        int delete = invitationService.deleteCommentById(id);
+        int delete = invitationService.deleteInvitationById(id);
         if (delete<=0){
             return new CommonResult(ResultData.FAILED,"删除对应评论失败",serverPort);
         }else {
